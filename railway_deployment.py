@@ -16,7 +16,7 @@ import threading
 import time
 
 # Import bot modules
-from discord_webhook_bot_final import SaudiStockBot
+from enhanced_saudi_stock_bot import SaudiStockBot
 from bot_learning import BotLearning, integrate_with_main_bot
 
 # Configure logging

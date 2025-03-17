@@ -1,7 +1,6 @@
+discord.py==2.3.2
+python-dotenv==1.0.0
+requests==2.31.0
 pandas
 numpy
 matplotlib
-requests
-schedule
-scikit-learn
-joblib

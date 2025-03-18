@@ -46,7 +46,7 @@ class ApiClient:
         """Initialize the API client with default configuration."""
         self.base_url = "https://query1.finance.yahoo.com/v8/finance"
         self.headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)  AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
         logger.info("ApiClient initialized")
     
@@ -167,7 +167,7 @@ class ApiClient:
         
         # Make the API request
         try:
-            response = requests.get(url, headers=self.headers, params=query)
+            response = requests.get(url, headers=self.headers, params=query) 
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
@@ -700,4 +700,3 @@ if __name__ == "__main__":
     
     # Run Flask app
     app.run(host='0.0.0.0', port=port)
-

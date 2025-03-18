@@ -562,8 +562,11 @@ class SaudiStockBot:
 # Initialize Flask app
 app = Flask(__name__)
 
-# Get webhook URL from environment variable
-WEBHOOK_URL = os.environ.get('WEBHOOK_URL', None)  # Default to None if not set
+# Get webhook URL from environment variables
+# CHANGED: Check for both DISCORD_WEBHOOK_URL and WEBHOOK_URL for better compatibility
+WEBHOOK_URL = os.environ.get('DISCORD_WEBHOOK_URL') or os.environ.get('WEBHOOK_URL')
+if not WEBHOOK_URL:
+    logger.warning("No webhook URL found in environment variables. Checking for both DISCORD_WEBHOOK_URL and WEBHOOK_URL.")
 
 # Initialize Saudi Stock Bot
 bot = SaudiStockBot(webhook_url=WEBHOOK_URL)
@@ -694,11 +697,17 @@ def run_scheduled_tasks():
     logger.info("Scheduled tasks started")
 
 if __name__ == "__main__":
-    # Get port from environment variable or use default
-    port = int(os.environ.get('PORT', 8080))
+    # IMPROVED: Get port from environment variable with better error handling
+    try:
+        port = int(os.environ.get('PORT', 5000))
+        logger.info(f"Starting server on port {port}")
+    except ValueError:
+        logger.warning("Invalid PORT environment variable, using default port 5000")
+        port = 5000
     
     # Start scheduled tasks
     run_scheduled_tasks()
     
-    # Run Flask app
-    app.run(host='0.0.0.0', port=port)
+    # IMPROVED: Run Flask app with explicit host and port binding
+    logger.info(f"Starting Flask app on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=False)

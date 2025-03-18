@@ -18,7 +18,7 @@ load_dotenv()
 class SaudiStockBot:
     def __init__(self):
         """Initialize the Saudi Stock Bot with webhook functionality."""
-        self.discord_webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
+        self.discord_webhook_url = os.getenv('https://discord.com/api/webhooks/1346789304181194814/Ggi0o1j8pPq-74U8uyuiXNSWs_bN42d9MkpoCGtm2iRit4OZ25myPRMx_YI9kZkOfdlB')
         self.bot_name = "Saudi Stock Analysis Bot"
         self.bot_avatar_url = "https://example.com/bot-avatar.png"  # Replace with actual avatar URL
         logger.info("Saudi Stock Bot initialized")
